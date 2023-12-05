@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>12.5 | 无名BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+  
+    <link rel="icon" href="/../img/icon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+          <a class="main-nav-link" href="/board">留言</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-12-5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="name">
+      12.5
+    </h1>
+  
+
+        <div class="article-meta">
+          <a href="/2023/12/05/12-5/" class="article-date">
+  <time datetime="2023-12-05T02:04:51.000Z" itemprop="datePublished">2023-12-05</time>
+</a>
+          
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B7%AF%E7%94%B1%E7%9F%A5%E8%AF%86/" rel="tag">路由知识</a></li></ul>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>概念<br>1、路由是指路由器从一个接口上收到数据包，根据数据包的目的地址进行定向并转发到另一个接口的过程。路由通常与桥接来对比，在粗心的人看来，它们似乎完成的是同样的事。它们的主要区别在于桥接发生在OSI参考模型的第二层（数据链路层），而路由发生在第三层（网络层）。这一区别使二者在传递信息的过程中使用不同的信息，从而以不同的方式来完成其任务。</p>
+<p>路由的话题早已在计算机界出现，但直到八十年代中期才获得商业成功。究其主要原因是七十年代的网络普遍很简单，发展到后来大型的网络才较为普遍。</p>
+<p>2、工程术语。指道路情况，包括道路宽度、深度、方向等信息。</p>
+<p>作用<br>路由器能够连接不同类型的局域网和广域网，如以太网、ATM网、FDDI网、令牌环网等。不同类型的网络，其传送的数据单元——包（Packet）的格式和大小是不同的。就像公路运输是以汽车为单位装载货物，而铁路运输是以车皮为单位装载货物一样，从汽车运输改为铁路运输，必须把货物从汽车上放到火车车皮上，网络中的数据也是如此。数据从一种类型的网络传输至另一种类型的网络，必须进行帧格式转换。路由器就有这种能力。</p>
+<p>实际上，我们所说的“互联网”，就是指各种路由器将各种不同的网络类型互相连接起来。</p>
+<p>工作原理<br>路由器是第三层网络设备。集线器工作在第一层（即物理层），没有智能处理能力，当一个端口的电流传到集线器中时，它只是简单地将电流传送到其他端口，不关心其他端口连接的计算机是否接收这些数据。交换机工作在第二层（即数据链路层），它要比集线器智能一些，对它而言，网络上的数据就是MAC地址的集合，它能分辨出帧中的源MAC地址和目的MAC地址，因此可以在任意两个端口间建立联系，但是交换机并不懂得IP地址，它只知道MAC地址。路由器工作在第三层（即网络层），它比交换机还要“聪明”一些，它能理解数据中的IP地址，如果它接收到一个数据包，就检查包中的目标网络地址以判断该包的目的地址在当前的路由表中是否存在（即路由器是否知道到达目标网络的路径）。如果发现包的目标地址与本路由器的某个接口所连接的网络地址相同，那么马上数据转发到相应接口；如果发现包的目标地址不是自己的直连网段，路由器会查看自己的路由表，查找包的目的网络所对应的接口，并从相应的接口转发出去；如果路由表中记录的网络地址与包的目标地址不匹配，则根据路由器配置转发到默认接口，在没有配置默认接口的情况下会给用户返回目标地址不可达的 ICMP 信息。</p>
+<p>路由工作包含两个基本的动作：</p>
+<p>1、确定最佳路径</p>
+<p>2、通过网络传输信息</p>
+<p>在路由的过程中，后者也称为（数据）交换。交换相对来说比较简单，而选择路径很复杂，</p>
+<p>路径选择<br>metric是路由算法用以确定到达目的地的最佳路径的计量标准，如路径长度。为了帮助选路，路由算法初始化并维护包含路径信息的路由表，路径信息根据使用的路由算法不同而不同。</p>
+
+      
+    </div>
+  </div>
+ 
+</article>
+
+
+  
+    <section id="comments" class="comments">
+      <style>
+        .comments{margin:30px;padding:10px;background:#fff}
+        @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+      </style>
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'true' == true ? true : false;
+    var verify = 'false' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "HBismw2vU6hg56PslAF2APW1-gzGzoHsz",
+        app_key: "k41e2BJYdNbojyHuMnKT5LBK",
+        placeholder: "留下你来过的痕迹~",
+        avatar:"robohash",
+    });
+</script>
+
+  </section>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+    <div class="widget-wrap-info">
+        <img src="/../img/avator.jpg" class="widget-wrap-info-img">
+        <div class="widget-wrap-info-author">向来痴</div>
+        <div class="widget-wrap-info-signature">业精于勤，荒于嬉。</div>
+    </div>
+    <div class="info-nav">
+        <ul class="info-nav-ul">
+        
+            <li class="info-nav-li">
+            <a class="info-nav-link" href="/">
+                <div class="info-nav-div">
+                    <span class="info-nav-icon">
+                        <i data-feather="home"></i>
+                    </span>
+                    <span class="info-nav-name">首页</span>
+                </div>
+            </a>
+           </li>
+          
+            <li class="info-nav-li">
+            <a class="info-nav-link" href="/archives">
+                <div class="info-nav-div">
+                    <span class="info-nav-icon">
+                        <i data-feather="archive"></i>
+                    </span>
+                    <span class="info-nav-name">归档</span>
+                </div>
+            </a>
+           </li>
+          
+            <li class="info-nav-li">
+            <a class="info-nav-link" href="/about">
+                <div class="info-nav-div">
+                    <span class="info-nav-icon">
+                        <i data-feather="alert-circle"></i>
+                    </span>
+                    <span class="info-nav-name">关于</span>
+                </div>
+            </a>
+           </li>
+          
+            <li class="info-nav-li">
+            <a class="info-nav-link" href="/board">
+                <div class="info-nav-div">
+                    <span class="info-nav-icon">
+                        <i data-feather="edit-3"></i>
+                    </span>
+                    <span class="info-nav-name">留言</span>
+                </div>
+            </a>
+           </li>
+          
+        </ul>
+    </div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 向来痴<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> | Theme by  <a href="https://github.com/FuShaoLei/hexo-theme-hiya" target="_blank">Hiya</a>
+      
+        <br>
+        <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+      <span id="busuanzi_container_site_uv">
+        访客数<span id="busuanzi_value_site_uv"></span>人次
+      </span>
+        
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/,home" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives,archive" class="mobile-nav-link">归档</a>
+  
+    <a href="/about,alert-circle" class="mobile-nav-link">关于</a>
+  
+    <a href="/board,edit-3" class="mobile-nav-link">留言</a>
+  
+</nav>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+    feather.replace()
+</script>
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
