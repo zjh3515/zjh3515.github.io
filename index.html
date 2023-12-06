@@ -48,6 +48,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-12-6" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/12/06/12-6/">12.6</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <a href="/2023/12/06/12-6/" class="article-date">
+  <time datetime="2023-12-06T03:23:52.000Z" itemprop="datePublished">2023-12-06</time>
+</a>
+          
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="12-6"><a href="#12-6" class="headerlink" title="12.6"></a>12.6</h1><h2 id="1-交换机"><a href="#1-交换机" class="headerlink" title="1.交换机"></a>1.交换机</h2><p>交换机的工作原理</p>
+<p>当交换机收到数据时，它会检查它的目的MAC地址，然后把数据从目的主机所在的接口转发出去。交换机之所以能实现这一功能，是因为交换机内部有一个MAC地址表，MAC地址表记录了网络中所有MAC地址与该交换机各端口的对应信息。某一数据帧需要转发时，交换机根据该数据帧的目的MAC地址来查找MAC地址表，从而得到该地址对应的端口，即知道具有该MAC地址的设备是连接在交换机的哪个端口上，然后交换机把数据帧从该端口转发出去。</p>
+<p>1.交换机根据收到数据帧中的源MAC地址建立该地址同交换机端口的映射，并将其写入MAC地址表中。<br>2.交换机将数据帧中的目的MAC地址同已建立的MAC地址表进行比较，以决定由哪个端口进行转发。<br>3.如数据帧中的目的MAC地址不在MAC地址表中，则向所有端口转发。这一过程称为泛洪（flood）。<br>4.广播帧和组播帧向所有的端口转发。</p>
+<h2 id="2-ospf动态路由配置"><a href="#2-ospf动态路由配置" class="headerlink" title="2.ospf动态路由配置"></a>2.ospf动态路由配置</h2><p>1.在模拟器中建立拓扑，并分配ip</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231206112804560.png" alt="image-20231206112804560"></p>
+<p>2.使用动态路由配置指令</p>
+<p>ospf  开启了ospf路由协议<br>area 0.0.0.0  进入骨干区域<br>network 直连网段 反子网掩码</p>
+<p>配置好三个路由器</p>
+<p>3.从pc1（192.168.1.10）ping pc3（192.168.5.10）</p>
+<p>ping通，ospf动态路由配置成功。</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231206113026672.png" alt="image-20231206113026672"></p>
+
+      
+    </div>
+  </div>
+ 
+</article>
+
+
+  
     <article id="post-12-5" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
