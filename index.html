@@ -48,6 +48,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-12-7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/12/07/12-7/">12.7</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <a href="/2023/12/07/12-7/" class="article-date">
+  <time datetime="2023-12-07T02:21:50.000Z" itemprop="datePublished">2023-12-07</time>
+</a>
+          
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ARP欺骗原理"><a href="#ARP欺骗原理" class="headerlink" title="ARP欺骗原理"></a>ARP欺骗原理</h2><p>向受害者主机发送arp报文，然后将其报文中的MAC地址设置成为自己的MAC地址，然后目标数据上网发送数据包的时候都会发送到自己的主机，然后我们做一个丢弃数据包的命令，就可以断掉受害者的网络了  </p>
+<p>网络配置<br>需要配置为桥接模式</p>
+<p>配置桥接模式原因：<br>因为需要我们手动去配置IP地址和网关，IP地址要与主机的无线网的IP段对应，子网掩码，网关都需要和宿主机保持一致，这样子才可以在同一个局域网进行ARP欺骗攻击，如果是net模式攻击无法生效</p>
+<h2 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h2><p>配置第一步<br>打开编辑 ———&gt; 虚拟网络编辑器 ———&gt; 选择桥接模式</p>
+<p>然后点击虚拟机 ———&gt; 设置 ———&gt; 把网络配置器设置为桥接模式</p>
+<p>配置第二步<br>在本机Win+r，然后cmd回车，输入命令：ipconfig</p>
+<p>然后在kali终端输入命令，设置静态ip，需要设为和你局域内网同网段</p>
+<p>设置eth0网卡静态IP<br>命令：vi &#x2F;etc&#x2F;network&#x2F;interfaces</p>
+<p>然后在下面一排添加以下代码</p>
+<p>auto eth0 #eth0网卡开机启动<br>iface eth0 inet static #设置eth0网卡静态<br>IP address (你的IPv4 地址)<br>netmask (你的子网掩码）<br>gateway (你的默认网关)</p>
+<p>然后保存并退出</p>
+<p>配置第三步<br>设置DNS    &#x2F;* 干净无广告，解析成功率相对来说更高，国内用户使用的比较多，而且速度相对快、稳定，是国内用户上网常用的DNS *&#x2F;</p>
+<p>在终端输入命令：vi &#x2F;etc&#x2F;resolv.conf</p>
+<p>需要修改为</p>
+<p>domain localdomain<br>search localdomain<br>nameserver 8.8.8.8<br>nameserver 114.114.114.114</p>
+<p>配置第四步<br>重启网络</p>
+<p>输入命令：service networking restart 或者 &#x2F;etc&#x2F;init.d&#x2F;networking restart</p>
+
+      
+    </div>
+  </div>
+ 
+</article>
+
+
+  
     <article id="post-12-6" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
