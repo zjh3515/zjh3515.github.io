@@ -69,7 +69,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="Linux-系统基本操作指令"><a href="#Linux-系统基本操作指令" class="headerlink" title="Linux 系统基本操作指令"></a>Linux 系统基本操作指令</h1><h2 id="一、目录操作"><a href="#一、目录操作" class="headerlink" title="一、目录操作"></a>一、目录操作</h2><p>pwd				查看当前工作目录<br>clear 			 清除屏幕<br>cd ~			   当前用户目录<br>cd &#x2F;			    根目录<br>cd -			   上一次访问的目录<br>cd ..			  上一级目录</p>
+<p><strong>查看目录内信息</strong></p>
+<p>ll				查看当前目录下内容（LL的小写）</p>
+<p><strong>创建目录</strong></p>
+<p>mkdir aaa		在当前目录下创建aaa目录，相对路径；<br>mkdir .&#x2F;bbb		在当前目录下创建bbb目录，相对路径；<br>mkdir &#x2F;ccc		在根目录下创建ccc目录，绝对路径；</p>
+<p><strong>递归创建目录</strong>（会创建里面没有的目录文件夹）</p>
+<p>mkdir -p temp&#x2F;nginx </p>
+<p><strong>搜索命令</strong></p>
+<p>find &#x2F; -name ‘b’		查询根目录下（包括子目录），名以b的目录和文件；<br>find &#x2F; -name ‘b*’		查询根目录下（包括子目录），名以b开头的目录和文件；<br>find . -name ‘b’		查询当前目录下（包括子目录），名以b的目录和文件；</p>
+<p><strong>重命名</strong></p>
+<p>mv                             原先目录 文件的名称   mv tomcat001 tomcat </p>
+<p><strong>剪切命令</strong>(有目录剪切到制定目录下，没有的话剪切为指定目录）</p>
+<p>mv	&#x2F;aaa &#x2F;bbb		    将根目录下的aaa目录，移动到bbb目录下(假如没有bbb目录，则重命名为bbb)；<br>mv	bbbb usr&#x2F;bbb		将当前目录下的bbbb目录，移动到usr目录下，并且修改名称为bbb；<br>mv	bbb usr&#x2F;aaa			将当前目录下的bbbb目录，移动到usr目录下，并且修改名称为aaa；</p>
+<p><strong>复制目录</strong></p>
+<p>cp -r &#x2F;aaa &#x2F;bbb			将&#x2F;目录下的aaa目录复制到&#x2F;bbb目录下，在&#x2F;bbb目录下的名称为aaa<br>cp -r &#x2F;aaa &#x2F;bbb&#x2F;aaa		将&#x2F;目录下的aa目录复制到&#x2F;bbb目录下，且修改名为aaa;</p>
+<p><strong>强制式删除指定目录</strong></p>
+<p>rm -rf &#x2F;bbb 强制删除&#x2F;目录下的bbb目录。如果bbb目录中还有子目录，也会被强制删除，不会提示；</p>
+<p><strong>删除目录</strong></p>
+<p>rm -r &#x2F;bbb			普通删除。会询问你是否删除每一个文件<br>rmdir test01		目录的删除</p>
+<h2 id="二、文件操作"><a href="#二、文件操作" class="headerlink" title="二、文件操作"></a>二、文件操作</h2><p><strong>删除</strong></p>
+<p>rm -r a.java		删除当前目录下的a.java文件（每次回询问是否删除y：同意）</p>
+<p><strong>强制删除</strong></p>
+<p>rm -rf a.java		强制删除当前目录下的a.java文件<br>rm -rf .&#x2F;a*			强制删除当前目录下以a开头的所有文件；<br>rm -rf .&#x2F;*			强制删除当前目录下所有文件（慎用）；</p>
+<p><strong>创建文件</strong></p>
+<p>touch testFile</p>
+<h2 id="三、文件内容操作"><a href="#三、文件内容操作" class="headerlink" title="三、文件内容操作"></a>三、文件内容操作</h2><p><strong>修改文件内容</strong></p>
+<p>vim a.java   	进入一般模式<br>i(按键)   		   进入插入模式(编辑模式)<br>ESC(按键)  		退出<br>:wq 			   保存退出（shift+：调起输入框）<br>:q！			   不保存退出（shift+：调起输入框）（内容有更改）(强制退出，不保留更改内容)<br>:q				   不保存退出（shift+：调起输入框）（没有内容更改）</p>
+<p><strong>文件内容的查看</strong></p>
+<p>cat a.java		     查看a.java文件的最后一页内容；<br>more a.java		从第一页开始查看a.java文件内容，按回车键一行一行进行查看，<br>                              按空格键一页一页进行查看，q退出；<br>less a.java		  从第一页开始查看a.java文件内容，按回车键一行一行的看，<br>                             按空格键一页一页的看，支持使用PageDown和PageUp翻页，q退出；</p>
+<p>总结下more 和 less的区别:</p>
+<p>less可以按键盘上下方向键显示上下内容,more不能通过上下方向键控制显示<br>less不必读整个文件，加载速度会比more更快<br>less退出后shell不会留下刚显示的内容,而more退出后会在shell上留下刚显示的内容.<br>由于more不能后退。</p>
+
       
     </div>
   </div>
