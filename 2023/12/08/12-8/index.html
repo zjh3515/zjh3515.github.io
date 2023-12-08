@@ -100,6 +100,21 @@
 <p>cat a.java		     查看a.java文件的最后一页内容；<br>more a.java		从第一页开始查看a.java文件内容，按回车键一行一行进行查看，<br>                              按空格键一页一页进行查看，q退出；<br>less a.java		  从第一页开始查看a.java文件内容，按回车键一行一行的看，<br>                             按空格键一页一页的看，支持使用PageDown和PageUp翻页，q退出；</p>
 <p>总结下more 和 less的区别:</p>
 <p>less可以按键盘上下方向键显示上下内容,more不能通过上下方向键控制显示<br>less不必读整个文件，加载速度会比more更快<br>less退出后shell不会留下刚显示的内容,而more退出后会在shell上留下刚显示的内容.<br>由于more不能后退。</p>
+<h2 id="四、Linux实践"><a href="#四、Linux实践" class="headerlink" title="四、Linux实践"></a>四、Linux实践</h2><p>1.在&#x2F;var&#x2F;log目录下创建abc的目录，在abc目录里面创建123.txt的文件，</p>
+<p>在123的文件里面写入“hello word ！nice to meet you”保存</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160552973.png" alt="image-20231208160552973"></p>
+<p>2.复制&#x2F;var&#x2F;log&#x2F;abc目录到 &#x2F;etc&#x2F;abc1</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160613679.png" alt="image-20231208160613679"></p>
+<p>3.将&#x2F;etc&#x2F;abc1移动到&#x2F;var&#x2F;abc2目录</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160631150.png" alt="image-20231208160631150"></p>
+<p>4.将&#x2F;var&#x2F;log&#x2F;abc&#x2F;123.txt软连接到&#x2F;</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160658145.png" alt="image-20231208160658145"></p>
+<p>5.将&#x2F;var&#x2F;log&#x2F;abc&#x2F;123.txt 权限修改为661</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160730370.png" alt="image-20231208160730370"></p>
+<p>6.删除&#x2F;var&#x2F;abc2</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160805270.png" alt="image-20231208160805270"></p>
+<p>7.查找&#x2F;var&#x2F;log 小于1000K的目录文件</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160823885.png" alt="image-20231208160823885"></p>
 
       
     </div>
