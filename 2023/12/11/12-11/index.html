@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>12.11实习所学 | 无名BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+  
+    <link rel="icon" href="/../img/icon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+          <a class="main-nav-link" href="/board">留言</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-12-11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="name">
+      12.11实习所学
+    </h1>
+  
+
+        <div class="article-meta">
+          <a href="/2023/12/11/12-11/" class="article-date">
+  <time datetime="2023-12-11T02:01:23.000Z" itemprop="datePublished">2023-12-11</time>
+</a>
+          
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="渗透测试之信息收集"><a href="#渗透测试之信息收集" class="headerlink" title="渗透测试之信息收集"></a>渗透测试之信息收集</h2><h4 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h4><p>​		渗透的本质是信息收集，信息收集也叫做资产收集。</p>
+<p>​		信息收集是渗透测试的前期主要工作，是非常重要的环节，收集足够多的信息才能方便接下来的测试，信息收集主要是收集网站的域名信息、子域名信息、目标网站信息、目标网站真实IP、敏感&#x2F;目录文件、开放端口和中间件信息等等。通过各种渠道和手段尽可能收集到多的关于这个站点的信息，有助于我们更多的去找到渗透点，突破口。</p>
+<h4 id="2-粗略分类和对象分析"><a href="#2-粗略分类和对象分析" class="headerlink" title="2. 粗略分类和对象分析"></a>2. 粗略分类和对象分析</h4><h5 id="2-1-内网"><a href="#2-1-内网" class="headerlink" title="2.1 内网"></a>2.1 内网</h5><ul>
+<li><p>网络设备：交换机、路由器、防火墙、ids等</p>
+</li>
+<li><p>网络中的服务器：文件服务器、dns、http、域控制器等</p>
+</li>
+</ul>
+<h5 id="2-2-外网"><a href="#2-2-外网" class="headerlink" title="2.2 外网"></a>2.2 外网</h5><ul>
+<li>相关联的其他服务器（ip关联、服务关联）</li>
+<li>旁站、c段、邮件服务器、dns服务器、代理服务器等</li>
+</ul>
+<h4 id="3-Web方向信息收集"><a href="#3-Web方向信息收集" class="headerlink" title="3. Web方向信息收集"></a>3. Web方向信息收集</h4><h5 id="3-1-域名信息"><a href="#3-1-域名信息" class="headerlink" title="3.1 域名信息"></a>3.1 域名信息</h5><h6 id="3-1-1-对应ip收集"><a href="#3-1-1-对应ip收集" class="headerlink" title="3.1.1   对应ip收集"></a>3.1.1   对应ip收集</h6><p>​		相关域名对应ip，相关手段：nslookup、<a target="_blank" rel="noopener" href="http://www.ip138.com/">www.ip138.com</a> …….</p>
+<h6 id="3-1-2-子域名收集"><a href="#3-1-2-子域名收集" class="headerlink" title="3.1.2  子域名收集"></a>3.1.2  子域名收集</h6><p>​		 收集子域名可以扩大测试的范围，统一域名下的二级域名都属于目标范围，可以使用工具，比如: layer挖掘机，或者网站<a target="_blank" rel="noopener" href="http://www.dnsgrep.cn/">www.dnsgrep.cn</a></p>
+<h6 id="3-1-3-查找域名信息的方法"><a href="#3-1-3-查找域名信息的方法" class="headerlink" title="3.1.3 查找域名信息的方法"></a>3.1.3 查找域名信息的方法</h6><p>​		fofa : title&#x3D;”公司名称”</p>
+<p>​		百度：intitle&#x3D;公司名称</p>
+<p>​		Google intitle&#x3D;公司名称</p>
+<p>​		空间测绘工具: fofa、钟馗之眼、鹰图、shodan</p>
+<h4 id="4-端口检测"><a href="#4-端口检测" class="headerlink" title="4. 端口检测"></a>4. 端口检测</h4><h5 id="4-1-什么是端口"><a href="#4-1-什么是端口" class="headerlink" title="4.1 什么是端口"></a>4.1 什么是端口</h5><p>​	网络技术中,端口分为两种:</p>
+<ul>
+<li>物理端口：也称接口，如usb端口等</li>
+<li>逻辑端口：一般是值TCP&#x2F;IP协议中的端口，如用网页浏览的80端口。</li>
+</ul>
+<p>​	端口的范围在0-65535，端口可以细分几种：</p>
+<h6 id="4-1-1-周知端口"><a href="#4-1-1-周知端口" class="headerlink" title="4.1.1 周知端口"></a>4.1.1 周知端口</h6><p>​		周知端口是总所周知的端口号，范围在0-1024</p>
+<h6 id="4-1-2-注册端口"><a href="#4-1-2-注册端口" class="headerlink" title="4.1.2 注册端口"></a>4.1.2 注册端口</h6><p>​		端口1024-49151，分配用户进程或应用程序，这些进程主要是用户选择安装的一些应用程序，而不是已经分配好了工人端口的常用程序。这些端口在没有被服务器资源占用的时候，可以用，用户端动态选用为源端口。</p>
+<h6 id="4-1-3-动态端口"><a href="#4-1-3-动态端口" class="headerlink" title="4.1.3 动态端口"></a>4.1.3 动态端口</h6><p>​		动态端口的范围是从49152到65535，之所以称为动态，是因为它一般不固定分配某种服务，而是动态分配。</p>
+<p>​	有些危险端口开放了我们可以尝试入侵例如： 445、3306、22、1433、6379；可以尝试爆破或者使用某些端口存在漏洞服务，而且有可能一台服务器上面不同端口代表着不同的web服务站。端口主要负责通信的.</p>
+<ul>
+<li>80[http协议]</li>
+<li>3306[Mysql]</li>
+<li>3389[远程服务协议]</li>
+<li>1433[SQL SERVER]</li>
+</ul>
+<h5 id="4-2-端口检测工具"><a href="#4-2-端口检测工具" class="headerlink" title="4.2 端口检测工具"></a>4.2 端口检测工具</h5><p>​	可以使用Namp、kali自带。</p>
+<h5 id="4-3-Nmap"><a href="#4-3-Nmap" class="headerlink" title="4.3 Nmap"></a>4.3 Nmap</h5><p>​		Namp是一个网络连接端扫描软件，用来扫描电脑开放的网络连接。</p>
+<p>​		基本功能：</p>
+<ul>
+<li><p>识别目标网络内的主机。</p>
+</li>
+<li><p>推断主机的操作系统</p>
+</li>
+<li><p>扫描主机端口。</p>
+</li>
+</ul>
+<h6 id="4-3-1-Nmap常用命令"><a href="#4-3-1-Nmap常用命令" class="headerlink" title="4.3.1 Nmap常用命令"></a>4.3.1 Nmap常用命令</h6><ul>
+<li>nmap -sT 192.168.2.4	&#x2F;&#x2F; TCP连接扫描，慢</li>
+<li>nmap -sS 192.168.2.4    &#x2F;&#x2F; SYN扫描，使用最频繁，安全，快</li>
+<li>nmap -Pn 192.168.2.4   &#x2F;&#x2F; 目标机禁用ping，绕过ping扫描</li>
+<li>nmap -T1~6 192.168.2.4   &#x2F;&#x2F; 设置扫描速度，一般T4足够。 </li>
+<li>nmap -sV 192.168.2.4   &#x2F;&#x2F; 对端口上的服务程序版本进行扫描</li>
+</ul>
+
+      
+    </div>
+  </div>
+ 
+</article>
+
+
+  
+    <section id="comments" class="comments">
+      <style>
+        .comments{margin:30px;padding:10px;background:#fff}
+        @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+      </style>
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'true' == true ? true : false;
+    var verify = 'false' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "HBismw2vU6hg56PslAF2APW1-gzGzoHsz",
+        app_key: "k41e2BJYdNbojyHuMnKT5LBK",
+        placeholder: "留下你来过的痕迹~",
+        avatar:"robohash",
+    });
+</script>
+
+  </section>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+    <div class="widget-wrap-info">
+        <img src="/../img/avator.jpg" class="widget-wrap-info-img">
+        <div class="widget-wrap-info-author">向来痴</div>
+        <div class="widget-wrap-info-signature">业精于勤，荒于嬉。</div>
+    </div>
+    <div class="info-nav">
+        <ul class="info-nav-ul">
+        
+            <li class="info-nav-li">
+            <a class="info-nav-link" href="/">
+                <div class="info-nav-div">
+                    <span class="info-nav-icon">
+                        <i data-feather="home"></i>
+                    </span>
+                    <span class="info-nav-name">首页</span>
+                </div>
+            </a>
+           </li>
+          
+            <li class="info-nav-li">
+            <a class="info-nav-link" href="/archives">
+                <div class="info-nav-div">
+                    <span class="info-nav-icon">
+                        <i data-feather="archive"></i>
+                    </span>
+                    <span class="info-nav-name">归档</span>
+                </div>
+            </a>
+           </li>
+          
+            <li class="info-nav-li">
+            <a class="info-nav-link" href="/about">
+                <div class="info-nav-div">
+                    <span class="info-nav-icon">
+                        <i data-feather="alert-circle"></i>
+                    </span>
+                    <span class="info-nav-name">关于</span>
+                </div>
+            </a>
+           </li>
+          
+            <li class="info-nav-li">
+            <a class="info-nav-link" href="/board">
+                <div class="info-nav-div">
+                    <span class="info-nav-icon">
+                        <i data-feather="edit-3"></i>
+                    </span>
+                    <span class="info-nav-name">留言</span>
+                </div>
+            </a>
+           </li>
+          
+        </ul>
+    </div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 向来痴<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> | Theme by  <a href="https://github.com/FuShaoLei/hexo-theme-hiya" target="_blank">Hiya</a>
+      
+        <br>
+        <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+      <span id="busuanzi_container_site_uv">
+        访客数<span id="busuanzi_value_site_uv"></span>人次
+      </span>
+        
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/,home" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives,archive" class="mobile-nav-link">归档</a>
+  
+    <a href="/about,alert-circle" class="mobile-nav-link">关于</a>
+  
+    <a href="/board,edit-3" class="mobile-nav-link">留言</a>
+  
+</nav>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+    feather.replace()
+</script>
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
