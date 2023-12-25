@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>12.22 | 无名BLOG</title>
+  <title>12.22实习所学 | 无名BLOG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
  
   
@@ -54,7 +54,7 @@
         
   
     <h1 class="p-name article-title" itemprop="name">
-      12.22
+      12.22实习所学
     </h1>
   
 
@@ -69,7 +69,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="nmap-功能简介"><a href="#nmap-功能简介" class="headerlink" title="nmap 功能简介"></a>nmap 功能简介</h2><p>1.概述<br> 大家都知道，我们使用的nmap功能非常强大，从发现主机，到端口探测，到服务发现，漏洞利用等等，无所不能。nmap扫主要包括四个方面的扫描功能分别是主机发现（Host Discovery）、端口扫描（Port Scanning）、应用与版本侦测（Version Detection）、操作系统侦测（Operating System Detection）</p>
+<p>2.简单使用<br>简单扫描：主机探测</p>
+<p>nmap 192.168.1.1<br>对结果进行详细输出：</p>
+<p>nmap -vv 192.168.1.1<br>扫描整个子网：</p>
+<p>nmap 192.168.1.1&#x2F;24<br>扫描多个目标：</p>
+<p>nmap 192.168.1.1,192.168.2.1<br>扫描一个范围的目标：</p>
+<p>nmap 192.168.1.1-254<br>扫描一个文件中的IP列表：</p>
+<p>nmap -iL file.txt<br>Nmap进行完整全面的扫描</p>
+<p>nmap –T4 –A –v 192.168.1.1<br> 其中-A选项用于使用进攻性（Aggressive）方式扫描；-T4指定扫描过程使用的时序（Timing），总有6个级别（0-5），级别越高，扫描速度越快，但也容易被防火墙或IDS检测并屏蔽掉，在网络通讯状况良好的情况推荐使用T4；-v表示显示冗余（verbosity）信息，在扫描过程中显示扫描的细节，从而让用户了解当前的扫描状态。</p>
+
       
     </div>
   </div>
