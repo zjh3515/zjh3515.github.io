@@ -48,6 +48,232 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-12-8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/12/08/12-8/">12.8实习所学</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <a href="/2023/12/08/12-8/" class="article-date">
+  <time datetime="2023-12-08T04:14:42.000Z" itemprop="datePublished">2023-12-08</time>
+</a>
+          
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux-系统基本操作指令"><a href="#Linux-系统基本操作指令" class="headerlink" title="Linux 系统基本操作指令"></a>Linux 系统基本操作指令</h1><h2 id="一、目录操作"><a href="#一、目录操作" class="headerlink" title="一、目录操作"></a>一、目录操作</h2><p>pwd				查看当前工作目录<br>clear 			 清除屏幕<br>cd ~			   当前用户目录<br>cd &#x2F;			    根目录<br>cd -			   上一次访问的目录<br>cd ..			  上一级目录</p>
+<p><strong>查看目录内信息</strong></p>
+<p>ll				查看当前目录下内容（LL的小写）</p>
+<p><strong>创建目录</strong></p>
+<p>mkdir aaa		在当前目录下创建aaa目录，相对路径；<br>mkdir .&#x2F;bbb		在当前目录下创建bbb目录，相对路径；<br>mkdir &#x2F;ccc		在根目录下创建ccc目录，绝对路径；</p>
+<p><strong>递归创建目录</strong>（会创建里面没有的目录文件夹）</p>
+<p>mkdir -p temp&#x2F;nginx </p>
+<p><strong>搜索命令</strong></p>
+<p>find &#x2F; -name ‘b’		查询根目录下（包括子目录），名以b的目录和文件；<br>find &#x2F; -name ‘b*’		查询根目录下（包括子目录），名以b开头的目录和文件；<br>find . -name ‘b’		查询当前目录下（包括子目录），名以b的目录和文件；</p>
+<p><strong>重命名</strong></p>
+<p>mv                             原先目录 文件的名称   mv tomcat001 tomcat </p>
+<p><strong>剪切命令</strong>(有目录剪切到制定目录下，没有的话剪切为指定目录）</p>
+<p>mv	&#x2F;aaa &#x2F;bbb		    将根目录下的aaa目录，移动到bbb目录下(假如没有bbb目录，则重命名为bbb)；<br>mv	bbbb usr&#x2F;bbb		将当前目录下的bbbb目录，移动到usr目录下，并且修改名称为bbb；<br>mv	bbb usr&#x2F;aaa			将当前目录下的bbbb目录，移动到usr目录下，并且修改名称为aaa；</p>
+<p><strong>复制目录</strong></p>
+<p>cp -r &#x2F;aaa &#x2F;bbb			将&#x2F;目录下的aaa目录复制到&#x2F;bbb目录下，在&#x2F;bbb目录下的名称为aaa<br>cp -r &#x2F;aaa &#x2F;bbb&#x2F;aaa		将&#x2F;目录下的aa目录复制到&#x2F;bbb目录下，且修改名为aaa;</p>
+<p><strong>强制式删除指定目录</strong></p>
+<p>rm -rf &#x2F;bbb 强制删除&#x2F;目录下的bbb目录。如果bbb目录中还有子目录，也会被强制删除，不会提示；</p>
+<p><strong>删除目录</strong></p>
+<p>rm -r &#x2F;bbb			普通删除。会询问你是否删除每一个文件<br>rmdir test01		目录的删除</p>
+<h2 id="二、文件操作"><a href="#二、文件操作" class="headerlink" title="二、文件操作"></a>二、文件操作</h2><p><strong>删除</strong></p>
+<p>rm -r a.java		删除当前目录下的a.java文件（每次回询问是否删除y：同意）</p>
+<p><strong>强制删除</strong></p>
+<p>rm -rf a.java		强制删除当前目录下的a.java文件<br>rm -rf .&#x2F;a*			强制删除当前目录下以a开头的所有文件；<br>rm -rf .&#x2F;*			强制删除当前目录下所有文件（慎用）；</p>
+<p><strong>创建文件</strong></p>
+<p>touch testFile</p>
+<h2 id="三、文件内容操作"><a href="#三、文件内容操作" class="headerlink" title="三、文件内容操作"></a>三、文件内容操作</h2><p><strong>修改文件内容</strong></p>
+<p>vim a.java   	进入一般模式<br>i(按键)   		   进入插入模式(编辑模式)<br>ESC(按键)  		退出<br>:wq 			   保存退出（shift+：调起输入框）<br>:q！			   不保存退出（shift+：调起输入框）（内容有更改）(强制退出，不保留更改内容)<br>:q				   不保存退出（shift+：调起输入框）（没有内容更改）</p>
+<p><strong>文件内容的查看</strong></p>
+<p>cat a.java		     查看a.java文件的最后一页内容；<br>more a.java		从第一页开始查看a.java文件内容，按回车键一行一行进行查看，<br>                              按空格键一页一页进行查看，q退出；<br>less a.java		  从第一页开始查看a.java文件内容，按回车键一行一行的看，<br>                             按空格键一页一页的看，支持使用PageDown和PageUp翻页，q退出；</p>
+<p>总结下more 和 less的区别:</p>
+<p>less可以按键盘上下方向键显示上下内容,more不能通过上下方向键控制显示<br>less不必读整个文件，加载速度会比more更快<br>less退出后shell不会留下刚显示的内容,而more退出后会在shell上留下刚显示的内容.<br>由于more不能后退。</p>
+<h2 id="四、Linux实践"><a href="#四、Linux实践" class="headerlink" title="四、Linux实践"></a>四、Linux实践</h2><p>1.在&#x2F;var&#x2F;log目录下创建abc的目录，在abc目录里面创建123.txt的文件，</p>
+<p>在123的文件里面写入“hello word ！nice to meet you”保存</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160552973.png" alt="image-20231208160552973"></p>
+<p>2.复制&#x2F;var&#x2F;log&#x2F;abc目录到 &#x2F;etc&#x2F;abc1</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160613679.png" alt="image-20231208160613679"></p>
+<p>3.将&#x2F;etc&#x2F;abc1移动到&#x2F;var&#x2F;abc2目录</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160631150.png" alt="image-20231208160631150"></p>
+<p>4.将&#x2F;var&#x2F;log&#x2F;abc&#x2F;123.txt软连接到&#x2F;</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160658145.png" alt="image-20231208160658145"></p>
+<p>5.将&#x2F;var&#x2F;log&#x2F;abc&#x2F;123.txt 权限修改为661</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160730370.png" alt="image-20231208160730370"></p>
+<p>6.删除&#x2F;var&#x2F;abc2</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160805270.png" alt="image-20231208160805270"></p>
+<p>7.查找&#x2F;var&#x2F;log 小于1000K的目录文件</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231208160823885.png" alt="image-20231208160823885"></p>
+
+      
+    </div>
+  </div>
+ 
+</article>
+
+
+  
+    <article id="post-12-7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/12/07/12-7/">12.7实习所学</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <a href="/2023/12/07/12-7/" class="article-date">
+  <time datetime="2023-12-07T02:21:50.000Z" itemprop="datePublished">2023-12-07</time>
+</a>
+          
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ARP欺骗原理"><a href="#ARP欺骗原理" class="headerlink" title="ARP欺骗原理"></a>ARP欺骗原理</h2><p>向受害者主机发送arp报文，然后将其报文中的MAC地址设置成为自己的MAC地址，然后目标数据上网发送数据包的时候都会发送到自己的主机，然后我们做一个丢弃数据包的命令，就可以断掉受害者的网络了  </p>
+<p>网络配置<br>需要配置为桥接模式</p>
+<p>配置桥接模式原因：<br>因为需要我们手动去配置IP地址和网关，IP地址要与主机的无线网的IP段对应，子网掩码，网关都需要和宿主机保持一致，这样子才可以在同一个局域网进行ARP欺骗攻击，如果是net模式攻击无法生效</p>
+<h2 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h2><p>配置第一步<br>打开编辑 ———&gt; 虚拟网络编辑器 ———&gt; 选择桥接模式</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153928520.png" alt="image-20231207153928520"></p>
+<p>然后点击虚拟机 ———&gt; 设置 ———&gt; 把网络配置器设置为桥接模式</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207154018993.png" alt="image-20231207154018993"></p>
+<p>配置第二步<br>在本机Win+r，然后cmd回车，输入命令：ipconfig</p>
+<p>然后在kali终端输入命令，设置静态ip，需要设为和你局域内网同网段</p>
+<p>设置eth0网卡静态IP<br>命令：vi &#x2F;etc&#x2F;network&#x2F;interfaces</p>
+<p>然后在下面一排添加以下代码</p>
+<p>auto eth0 #eth0网卡开机启动<br>iface eth0 inet static #设置eth0网卡静态<br>IP address (你的IPv4 地址)<br>netmask (你的子网掩码）<br>gateway (你的默认网关)</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207151130093.png" alt="image-20231207151130093"></p>
+<p>然后保存并退出</p>
+<p>配置第三步<br>配置dns（在第二步中已完成） </p>
+<p>配置第四步<br>重启网络</p>
+<p>输入命令：service networking restart 或者 &#x2F;etc&#x2F;init.d&#x2F;networking restart</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207152126782.png" alt="image-20231207152126782"></p>
+<h2 id="安装arpspoof"><a href="#安装arpspoof" class="headerlink" title="安装arpspoof"></a>安装arpspoof</h2><p>在kali终端输入命令：apt-get install dsniff</p>
+<p>安装arpspoof踩坑<br>这是发现踩坑了，报错无法定位软件包</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207152838171.png" alt="image-20231207152838171"></p>
+<p>坑点解决方法<br>第一步<br>换源</p>
+<p>输入命令：</p>
+<p>cd &#x2F;etc&#x2F;apt&#x2F;</p>
+<p>cp sources.list sources.list.bb<br> vi sources.list</p>
+<p>更换源地址</p>
+<p>deb <a target="_blank" rel="noopener" href="http://archive.ubuntu.com/ubuntu/">http://archive.ubuntu.com/ubuntu/</a> trusty main universe restricted multiverseb  </p>
+<p>然后把第三排注释掉，在第三排下面加上源地址</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153017866.png" alt="image-20231207153017866"></p>
+<p>第二步<br>安装</p>
+<p>输入命令：sudo apt-get update</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153113585.png" alt="image-20231207153113585"></p>
+<p>然后又出来了一个坑点，出现了签名问题</p>
+<p>第三步<br>导入用户密钥</p>
+<p>输入命令：sudo apt-key adv –keyserver keyserver.ubuntu.com –recv-keys 3B4FE6ACC0B21F32</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153205291.png" alt="image-20231207153205291"></p>
+<p>第四步<br>安装</p>
+<p>输入命令：sudo apt-get update</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153335515.png" alt="image-20231207153335515"></p>
+<p>输入命令：apt-get install dsniff ssldump</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153431426.png" alt="image-20231207153431426"></p>
+<p>检验安装arpspoof是否成功<br>输入命令：arpspoof</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153548361.png" alt="image-20231207153548361"></p>
+<p>出现了版本号等信息说明安装成功</p>
+<h2 id="Arpspoof的使用"><a href="#Arpspoof的使用" class="headerlink" title="Arpspoof的使用"></a>Arpspoof的使用</h2><p>参数</p>
+<p>-i interface 指定要使用的接口</p>
+<p>-c own|host|both 指定范围own|host|both （自己|主机|两者）</p>
+<p>-t target 指定一台特定主机进行ARP （如果未指定，则为LAN上的所有主机）</p>
+<p>-r 两个主机(主机和目标)以捕获两个方向的流量 （仅对-t有效）</p>
+<p>host 指定您希望抓取数据包的host （通常是本地网关）  </p>
+<p>示例 echo 1 &gt; &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip_forward #开启端口转发</p>
+<p>cat &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip_forward #检测端口是否开启(1为开启 0为关闭)</p>
+<p>echo 0 &gt; &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip_forward #关闭端口转发</p>
+<p>sudo tc qdisc add dev eth0 root netem delay 200ms #限制网速200ms延时</p>
+<p>sudo tc qdisc del dev eth0 root netem delay 200ms #取消限制网速200ms延时</p>
+<p>arpspoof -i 网卡名 -t 欺骗的目标 我是谁</p>
+<p>arpspoof -i eth0 -t 受害者的IP 网关</p>
+<h2 id="断网攻击"><a href="#断网攻击" class="headerlink" title="断网攻击"></a>断网攻击</h2><p>按照命令“arpspoof -i eth0 -t 受害者的IP 网关”键入</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231207153816680.png" alt="image-20231207153816680"></p>
+
+      
+    </div>
+  </div>
+ 
+</article>
+
+
+  
+    <article id="post-12-6" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/12/06/12-6/">12.6实习所学</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <a href="/2023/12/06/12-6/" class="article-date">
+  <time datetime="2023-12-06T03:23:52.000Z" itemprop="datePublished">2023-12-06</time>
+</a>
+          
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-交换机"><a href="#1-交换机" class="headerlink" title="1.交换机"></a>1.交换机</h2><p>交换机的工作原理</p>
+<p>当交换机收到数据时，它会检查它的目的MAC地址，然后把数据从目的主机所在的接口转发出去。交换机之所以能实现这一功能，是因为交换机内部有一个MAC地址表，MAC地址表记录了网络中所有MAC地址与该交换机各端口的对应信息。某一数据帧需要转发时，交换机根据该数据帧的目的MAC地址来查找MAC地址表，从而得到该地址对应的端口，即知道具有该MAC地址的设备是连接在交换机的哪个端口上，然后交换机把数据帧从该端口转发出去。</p>
+<p>1.交换机根据收到数据帧中的源MAC地址建立该地址同交换机端口的映射，并将其写入MAC地址表中。<br>2.交换机将数据帧中的目的MAC地址同已建立的MAC地址表进行比较，以决定由哪个端口进行转发。<br>3.如数据帧中的目的MAC地址不在MAC地址表中，则向所有端口转发。这一过程称为泛洪（flood）。<br>4.广播帧和组播帧向所有的端口转发。</p>
+<h2 id="2-ospf动态路由配置"><a href="#2-ospf动态路由配置" class="headerlink" title="2.ospf动态路由配置"></a>2.ospf动态路由配置</h2><p>1.在模拟器中建立拓扑，并分配ip</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231206112804560.png" alt="image-20231206112804560"></p>
+<p>2.使用动态路由配置指令</p>
+<p>ospf  开启了ospf路由协议<br>area 0.0.0.0  进入骨干区域<br>network 直连网段 反子网掩码</p>
+<p>配置好三个路由器</p>
+<p>3.从pc1（192.168.1.10）ping pc3（192.168.5.10）</p>
+<p>ping通，ospf动态路由配置成功。</p>
+<p><img src="https://raw.githubusercontent.com/zjh3515/imagee/main/image-20231206113026672.png" alt="image-20231206113026672"></p>
+<h2 id="3-OSI七层模型"><a href="#3-OSI七层模型" class="headerlink" title="3.OSI七层模型"></a>3.OSI七层模型</h2><p>1.物理层：实现实际终端信号的传输，码流通过物理介质传输。常用设备有：集线器、中继器、网线、双绞线等。<br>2.数据链路层：提供介质访问和链路管理。把位元合并为字节，然后将字节合并到帧中，以使媒体能够通过数据链路层访问。<br>3.网络层：IP选址及路由选择。<br>4.传输层：建立、维护、管理端到端的区别。<br>5.会话层：建立、管理和维护表示层实体的会话。<br>6.表示层：数据格式转化，对数据进行加密。<br>7.应用层：为应用程序提供服务。</p>
+<h2 id="4-C盘清理"><a href="#4-C盘清理" class="headerlink" title="4.C盘清理"></a>4.C盘清理</h2><p>这里从文件设置方面到垃圾文件清理和不需要文件删除入手深度释放c盘空间</p>
+<p>初级篇<br>仅仅使用一些系统自带的功能清理</p>
+<p>1、文件移动<br>系统默认桌面文档是放在c盘的，我们可以直接把这些都移到其他盘。</p>
+<p>2、磁盘清理<br>使用系统由自带的磁盘清理功能，可以清理一些临时文件和缩略图等。</p>
+<p>右键c盘→属性→磁盘清理</p>
+<p>3、删除系统备份<br>系统在更新后往往会留下上个版本的镜像文件以备还原使用，如果不需要返回之前的系统可以直接删除。如下图进入c盘会看到这个文件夹，直接删除即可。</p>
+<p>4、转移虚拟内存<br>虚拟内存默认是使用的c盘的空间，可以把它转移到其他磁盘（最好是固态盘）</p>
+<p>此电脑→属性→高级系统设置→设置→高级→更改</p>
+<p>将虚拟内存托管到其他磁盘，此处转移到D盘</p>
+<p>再将c盘设置为无分页文件</p>
+<p>5、修改缓存保存位置<br>qq、微信、迅雷、钉钉等很大部分软件在安装的时候默认选择缓存保存位置都是c盘。如果没注意修改的话很可能就占了c盘空间了。设置里都能修改，稍微看一看就能找到，如下是微信的存储位置管理。</p>
+<p>6、清除微软商店缓存</p>
+<p>键盘敲击win+R后输入WSreset.exe 这时候会弹出下面这个黑框，稍等一会，他会自动清理。</p>
+
+      
+    </div>
+  </div>
+ 
+</article>
+
+
+  
     <article id="post-12-5" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
