@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>12.26实习所学 | 无名BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+  
+    <link rel="icon" href="/../img/icon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+          <a class="main-nav-link" href="/board">留言</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-12-26" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="name">
+      12.26实习所学
+    </h1>
+  
+
+        <div class="article-meta">
+          <a href="/2023/12/26/12-26/" class="article-date">
+  <time datetime="2023-12-26T02:49:20.000Z" itemprop="datePublished">2023-12-26</time>
+</a>
+          
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="密码找回，验证码绕过漏洞详解"><a href="#密码找回，验证码绕过漏洞详解" class="headerlink" title="密码找回，验证码绕过漏洞详解"></a>密码找回，验证码绕过漏洞详解</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在TOP10漏洞中，逻辑漏洞被称为“不安全的对象引用，和功能级访问控制缺失”！此外，逻辑漏洞也是作为渗透测试人员必须深入了解和学习的，而且日后逻辑漏洞在我们的漏洞产出中也是占据主导地位的！常见的逻辑漏洞有：<br>越权漏洞，密码需改，密码找回，验证码漏洞，支付漏洞，投票&#x2F;积分&#x2F;抽奖，短信轰炸等；</p>
+<h3 id="1-验证码是什么"><a href="#1-验证码是什么" class="headerlink" title="1.验证码是什么"></a>1.验证码是什么</h3><p>验证码是一种区分任何计算机的公共全自动程序。验证码根据用途主要分类两大类：</p>
+<p>图灵测试(区分人和机器，在反反爬虫中应用广泛)<br>证明身份(比如您登录微信，支付宝，支持短信验证码登录)<br>网站设置验证码可以防止恶意破解密码，刷票，论坛灌水，有效防止黑客对特定用户用特殊手段，比如暴力破解的方式进行不断的登陆尝试！所以大多数网站都使用验证码!</p>
+<p>常见的验证码种类：<br>中文字识别，纯数字，点击字符，数学运算，图片识别等</p>
+<h3 id="2-验证码绕过"><a href="#2-验证码绕过" class="headerlink" title="2.验证码绕过"></a>2.验证码绕过</h3><p>&lt;2.1前端验证码，并没有后端验证<br>在网站中输入验证码后，JS代码校验过你已经输了验证码，但发送数据包时，数据包中没有携带验证码，对于这种可以直接抓包跑数据即可！</p>
+<p>&lt;2.2验证码设置了但是没有校验<br>类似登陆时，验证码给出3456，但是发现可以不按照他给的验证码填，我们乱输一个也可以跑包！（比较少见）</p>
+<p>&lt;2.3验证码重复使用<br>这个很好理解，就是开发只写了验证码的校验代码，没有考虑到重复使用，比如：你在第一次登陆时输入了验证码，但是由于密码输错，重新登录，虽然验证码会变，但是你输入上一个验证码，没有提示验证码错误！</p>
+<p>&lt;2.4验证码空值绕过<br>比如我们登陆时抓包，发现数据包的登陆参数在用户名和密码后面还有其它参数，但是我们去掉这个参数后直接传用户名和密码，照样可以登录!</p>
+<p>&lt;2.5验证码在HTML页面输出<br>在网站登录页面，我们还没有输入验证码时，在控制台查看源码时，可以看到验证码！这时我们可以自动化获取验证码，进行爆破用户账号！</p>
+<p>&lt;2.6验证码可控<br>比如它的验证码在URL里，是一个URL传参，可以通过设置这个传参来控制验证码！</p>
+<p>&lt;2.7万能验证码<br>抓取登陆包跑验证码，比如四位的数字验证码，可以跑0000到9999，看有没有可以使用的！</p>
+<p>&lt;2.8图片验证码<br>我们可以多进行几次登录，看验证码的图片类型多不多，如果只是那几张来回使用，可以通过工具或者代码识别绕过！</p>
+<p>&lt;2.9多次登录后出现验证码<br>这种情况在现在比较常见，第一次登陆时不需要验证码，但是当你第一次，第二次登录失败时会出现验证码！在你登陆时，服务器是通常是通过IP，cookie以及用户名来区分你是谁的！所以我们可以从这三个方面来绕过：</p>
+<p>IP：通过记录IP来识别，当同一个IP多次访问时，他会给你上验证码，我们可以通过X-Forwarded-For或者是设置代理池的方法来改变我们的IP！<br>cookie：cookie代表的是身份凭证，即使你没有登录在登录页面你也会有cookie，cookie每次登录时都可以是不同的，因为当一个cookie成功登陆后，他才会被赋予权限，如果没有登录成功，他就只是个普通的cookie！</p>
+<p>我们可以跑密码和cookie双跑数据包来爆破用户账号！<br>用户名：通常情况下爆破密码时，想到的都是爆破密码，我们可以调换下位置，跑用户名！</p>
+<h3 id="3-密码找回"><a href="#3-密码找回" class="headerlink" title="3.密码找回"></a>3.密码找回</h3><p>密码找回与前面有所不同，他并不是用来区分人和计算机的，而是用来证明你的身份！比如常见的短信验证，邮箱验证！</p>
+<h3 id="4-绕过方法"><a href="#4-绕过方法" class="headerlink" title="4.绕过方法"></a>4.绕过方法</h3><p>&lt;4.1验证码发送后前端返回<br>比如我们在密码找回页面，输入手机号后点击获取验证码时，抓包后发现，验证码就在数据包里显示，意思是验证码没有发送到手机，数据包中就已经带有验证码了！这样我们就可以直接修改别人手机绑定的账号密码了！</p>
+<p>&lt;4.2验证码可爆破(不限次数)<br>这个与上面验证码可重复使用是一个道理，我们输入手机号后随意输入验证码，抓包后，跑验证码！一般验证码都是4或6位纯数字，这个可能是开发没有考虑到验证码的时效性，导致验证码可以重复使用！</p>
+<p>&lt;4.3验证码可控<br>在找回密码时，抓包后，发现数据包中有传参值与发到手机上的验证码相同，这时可以通过修改数据包的传参值来控制短信验证码！这种危害性还是比较大的，比如可以发送垃圾邮件，钓鱼网站链接，不良网站链接！</p>
+
+      
+    </div>
+  </div>
+ 
+</article>
+
+
+  
+    <section id="comments" class="comments">
+      <style>
+        .comments{margin:30px;padding:10px;background:#fff}
+        @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+      </style>
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'true' == true ? true : false;
+    var verify = 'false' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "HBismw2vU6hg56PslAF2APW1-gzGzoHsz",
+        app_key: "k41e2BJYdNbojyHuMnKT5LBK",
+        placeholder: "留下你来过的痕迹~",
+        avatar:"robohash",
+    });
+</script>
+
+  </section>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+    <div class="widget-wrap-info">
+        <img src="/../img/avator.jpg" class="widget-wrap-info-img">
+        <div class="widget-wrap-info-author">向来痴</div>
+        <div class="widget-wrap-info-signature">业精于勤，荒于嬉。</div>
+    </div>
+    <div class="info-nav">
+        <ul class="info-nav-ul">
+        
+            <li class="info-nav-li">
+            <a class="info-nav-link" href="/">
+                <div class="info-nav-div">
+                    <span class="info-nav-icon">
+                        <i data-feather="home"></i>
+                    </span>
+                    <span class="info-nav-name">首页</span>
+                </div>
+            </a>
+           </li>
+          
+            <li class="info-nav-li">
+            <a class="info-nav-link" href="/archives">
+                <div class="info-nav-div">
+                    <span class="info-nav-icon">
+                        <i data-feather="archive"></i>
+                    </span>
+                    <span class="info-nav-name">归档</span>
+                </div>
+            </a>
+           </li>
+          
+            <li class="info-nav-li">
+            <a class="info-nav-link" href="/about">
+                <div class="info-nav-div">
+                    <span class="info-nav-icon">
+                        <i data-feather="alert-circle"></i>
+                    </span>
+                    <span class="info-nav-name">关于</span>
+                </div>
+            </a>
+           </li>
+          
+            <li class="info-nav-li">
+            <a class="info-nav-link" href="/board">
+                <div class="info-nav-div">
+                    <span class="info-nav-icon">
+                        <i data-feather="edit-3"></i>
+                    </span>
+                    <span class="info-nav-name">留言</span>
+                </div>
+            </a>
+           </li>
+          
+        </ul>
+    </div>
+</div>
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 向来痴<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> | Theme by  <a href="https://github.com/FuShaoLei/hexo-theme-hiya" target="_blank">Hiya</a>
+      
+        <br>
+        <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+      <span id="busuanzi_container_site_uv">
+        访客数<span id="busuanzi_value_site_uv"></span>人次
+      </span>
+        
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/,home" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives,archive" class="mobile-nav-link">归档</a>
+  
+    <a href="/about,alert-circle" class="mobile-nav-link">关于</a>
+  
+    <a href="/board,edit-3" class="mobile-nav-link">留言</a>
+  
+</nav>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+    feather.replace()
+</script>
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
